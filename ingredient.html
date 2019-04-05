@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Ингредиенты</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	</head>
+	<body>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<table class="table table-hover" id="ingredientsTable">
+			<thead>
+				<tr>
+					<th >Id</th>
+					<th>Name</th>
+					<th>Calorie/100g</th>
+					<th>Squirrels/100g</th>
+					<th>Fats/100g</th>
+					<th>Carbohydrates/100g</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="ingredient in ingredients">
+					<td scope="row">{{ingredient.id}}</td>
+					<td>{{ingredient.name}}</td>
+					<td>{{ingredient.calorie}}</td>
+					<td>{{ingredient.squirrels}}</td>
+					<td>{{ingredient.fats}}</td>
+					<td>{{ingredient.carbohydrates}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<script src="js/ingredient.js"></script>
+	</body>
+</html>

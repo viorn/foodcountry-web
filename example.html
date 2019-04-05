@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Пример веб-страницы</title>
+ </head>
+ <body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  
+  <div id="app">
+   {{ message }}
+  </div>
+  
+  <div id="app-2">
+  <span v-bind:title="message">
+    Наведи на меня курсор на пару секунд,
+    чтобы увидеть динамически связанное значение title!
+  </span>
+  </div>
+
+  <div id="app-3">
+  	<span v-if="seen">Сейчас меня видно</span>
+  </div>
+
+  <div id="app-4">
+  	<ol>
+    	<li v-for="todo in todos">
+      		{{ todo.text }}
+    	</li>
+  	</ol>
+  </div>
+
+  <div id="app-5">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">Перевернуть сообщение</button>
+  </div>
+
+  <script src="js/example.js"></script>
+ </body>
+</html>
