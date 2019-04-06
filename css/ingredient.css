@@ -1,15 +1,15 @@
-.table-fixed thead {
-  width: 97%;
+#toolsPanel {
+	margin-left: 16px;
+	margin-right: 16px;
+	margin-top: 16px;
+	margin-bottom: 16px;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	padding-left: 16px;
+	padding-right: 16px;
 }
-.table-fixed tbody {
-  height: 230px;
-  overflow-y: auto;
-  width: 100%;
-}
-.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
-  display: block;
-}
-.table-fixed tbody td, .table-fixed thead > tr> th {
-  float: left;
-  border-bottom-width: 0;
+
+.btn:focus,.btn:active {
+   outline: none !important;
+   box-shadow: none;
 }
