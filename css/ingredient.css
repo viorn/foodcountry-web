@@ -9,7 +9,7 @@
 	padding-right: 16px;
 }
 
-.btn:focus,.btn:active {
-   outline: none !important;
-   box-shadow: none;
+#ingredientsTable {
+	margin-left: 16px;
+	margin-right: 16px;
 }

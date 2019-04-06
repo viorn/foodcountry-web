@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>Ингредиенты</title>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/ingredient.css">
-	</head>
-	<body>
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-		<div id="toolsPanel" class="jumbotron">
-			<button type="button" class="btn btn-primary" disabled>Add</button>
-			<button type="button" class="btn btn-primary" v-on:click="refreshList">Refresh</button>
-		</div>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Ингредиенты</title>
+	<link rel="stylesheet" href="css/bulma.min.css">
+	<link rel="stylesheet" href="css/ingredient.css">
+</head>
 
-		<table class="table table-hover" id="ingredientsTable">
+<body>
+
+	<div id="toolsPanel" class="box">
+		<a class="button is-outlined" v-on:click="addIngredient">Add</a>
+		<a class="button" v-on:click="refreshList">Refresh</a>
+	</div>
+
+	<div id="ingredientsTable" class="box">
+		<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+			<a class="pagination-previous" v-bind:disabled="page==1" v-on:click="previousPage">Previous</a>
+			<a class="pagination-next" v-bind:disabled="page==totalPage" v-on:click="nextPage">Next</a>
+			<ul class="pagination-list">
+				<li><a class="pagination-link" v-if="paginationFirstPage" v-on:click="changePage(1)">1</a></li>
+				<li><span class="pagination-ellipsis" v-if="paginationFirstPage">&hellip;</span></li>
+				<li v-for="page in paginationPages"><a class="pagination-link" v-on:click="changePage(page.page)" v-bind:class="{'is-current': page.active}" aria-current="page">{{page.page}}</a></li>
+				<li><span class="pagination-ellipsis" v-if="paginationLastPage">&hellip;</span></li>
+				<li><a class="pagination-link" v-if="paginationLastPage" v-on:click="changePage(totalPage)">{{totalPage}}</a></li>
+			</ul>
+		</nav>
+		<table class="table is-fullwidth">
 			<thead>
 				<tr>
-					<th >Id</th>
+					<th>Id</th>
 					<th>Name</th>
 					<th>Calorie/100g</th>
 					<th>Squirrels/100g</th>
@@ -31,15 +40,62 @@
 			</thead>
 			<tbody>
 				<tr v-for="ingredient in ingredients">
-					<td scope="row">{{ingredient.id}}</td>
+					<td style="width: 100px;">{{ingredient.id}}</td>
 					<td>{{ingredient.name}}</td>
-					<td>{{ingredient.calorie}}</td>
-					<td>{{ingredient.squirrels}}</td>
-					<td>{{ingredient.fats}}</td>
-					<td>{{ingredient.carbohydrates}}</td>
+					<td style="width: 100px;">{{ingredient.calorie}}</td>
+					<td style="width: 100px;">{{ingredient.squirrels}}</td>
+					<td style="width: 100px;">{{ingredient.fats}}</td>
+					<td style="width: 100px;">{{ingredient.carbohydrates}}</td>
 				</tr>
 			</tbody>
 		</table>
-		<script src="js/ingredient.js"></script>
-	</body>
+	</div>
+
+	<div id="addIngredientModal" class="modal" v-bind:class="{ 'is-active': isActive }">
+		<div class="modal-background"></div>
+		<div class="modal-content box">
+			<div class="field is-horizontal">
+				<div class="field-label is-normal">
+					<label class="label">Name</label>
+				</div>
+				<div class="field-body">
+					<input class="input" v-model="name" type="text" placeholder="Name input">
+				</div>
+			</div>
+			<div class="field is-horizontal">
+				<div class="field-label is-normal">
+					<label class="label ">Squirr</label>
+				</div>
+				<div class="field-body">
+					<input class="input" v-model="squirrels" type="number" placeholder="Squirrels input">
+				</div>
+			</div>
+			<div class="field is-horizontal">
+				<div class="field-label is-normal">
+					<label class="label ">Fats</label>
+				</div>
+				<div class="field-body">
+					<input class="input" v-model="fats" type="number" placeholder="Fats input">
+				</div>
+			</div>
+			<div class="field is-horizontal">
+				<div class="field-label is-normal">
+					<label class="label ">Carbo</label>
+				</div>
+				<div class="field-body">
+					<input class="input" v-model="carbohydrates" type="number" placeholder="Carbohydrates input">
+				</div>
+			</div>
+			<div class="level">
+				<a class="button level-item" v-on:click="addIngredient">Add</a>
+			</div>
+		</div>
+		<button class="modal-close is-large" aria-label="close" v-on:click="isActive = !isActive"></button>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="js/ingredient.js"></script>
+</body>
+
 </html>

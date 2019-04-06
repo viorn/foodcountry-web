@@ -10,7 +10,8 @@ var realEstateMenu = new Vue({
   el: '#realEstateMenu',
   data: {
       ingredientTabIsActive: true,
-      examplesTabIsActive: false
+      examplesTabIsActive: false,
+			showNav: false
   },
   methods: {
     clickToIngredientsTab: function () {
